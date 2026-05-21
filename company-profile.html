@@ -27,10 +27,7 @@
       justify-content:space-between; height:44px;
     }
     .logo{display:flex;align-items:center;gap:7px;}
-    .logo-icon{width:26px;height:26px;position:relative;flex-shrink:0;}
-    .logo-icon::before,.logo-icon::after{content:'';position:absolute;border:2.5px solid var(--br);border-radius:50%;}
-    .logo-icon::before{width:22px;height:22px;top:2px;left:2px;border-right-color:transparent;border-bottom-color:transparent;transform:rotate(-45deg);}
-    .logo-icon::after{width:13px;height:13px;top:6px;left:6px;border-right-color:transparent;border-bottom-color:transparent;transform:rotate(-45deg);}
+    .logo-name{letter-spacing:2px;}
     .logo-name{color:var(--br);font-family:'Noto Serif JP',serif;font-size:13px;font-weight:700;letter-spacing:1.5px;}
     .hdr-r{display:flex;align-items:center;gap:12px;}
     .hdr-tel span{display:block;color:var(--br);font-size:13px;font-weight:700;line-height:1.2;}
@@ -148,7 +145,6 @@
 
 <header>
   <div class="logo">
-    <div class="logo-icon"></div>
     <div class="logo-name">Lucent Partners</div>
   </div>
   <div class="hdr-r">
