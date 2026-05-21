@@ -4,39 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ルーセント・パートナーズ株式会社 - 会社案内</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset ── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ── ブランドカラー（参考サイト lucent-p.jp 準拠） ── */
+    /* ── ブランドカラー（lucent-p.jp 実サイト準拠） ── */
     :root {
-      --navy:      #1B3A6B;   /* メインネイビー */
-      --navy-dk:   #0E2040;   /* フッター濃紺  */
-      --gold:      #9E8030;   /* アンバーゴールド（くすみ） */
-      --gold-lt:   #B59A40;   /* ゴールドライト */
-      --white:     #ffffff;
-      --off:       #F4F6FA;   /* セクション薄グレー */
-      --border:    #DDE1EA;
-      --txt:       #1A1E30;
-      --txt-m:     #4A5270;
-      --txt-l:     #8890AA;
+      --br:     #8B6030;   /* メインブラウン   */
+      --br-dk:  #6A4820;   /* ダークブラウン   */
+      --br-lt:  #A87840;   /* ライトブラウン   */
+      --btn:    #5C4535;   /* ボタン色        */
+      --white:  #ffffff;
+      --off:    #F8F6F3;   /* ウォームオフホワイト */
+      --off2:   #F2EFE9;   /* やや濃いオフホワイト */
+      --border: #E0D8CE;
+      --txt:    #2A2520;
+      --txt-m:  #5A5048;
+      --txt-l:  #9A9088;
     }
 
-    /* ── ページ固定幅（A4縦: 794px × 1123px） ── */
-    html, body {
-      width: 794px;
-      margin: 0 auto;
-      background: #ccc;     /* 印刷時は無視される */
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    @media print {
-      @page { size: A4 portrait; margin: 0; }
-      html, body { background: none; }
-    }
-
+    /* ── ページ固定幅（A4縦 794×1123px） ── */
+    html { background: #c8c0b8; }
     body {
       font-family: 'Noto Sans JP', 'Yu Gothic', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif;
       color: var(--txt);
@@ -44,169 +32,204 @@
       line-height: 1.65;
       background: var(--white);
       width: 794px;
+      margin: 0 auto;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      html { background: none; }
     }
 
     /* ══════════════════════════════
-       HEADER  (高さ ~46px)
+       HEADER  (~48px)
     ══════════════════════════════ */
     header {
       background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 32px;
+      border-bottom: 2px solid var(--off2);
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 42px;
+      height: 52px;
     }
 
+    /* ロゴ */
     .logo { display: flex; align-items: center; gap: 8px; }
 
-    .logo-mark {
-      font-family: Georgia, serif;
-      font-size: 22px;
-      font-weight: 700;
-      font-style: italic;
-      color: var(--navy);
-      letter-spacing: -1.5px;
-      line-height: 1;
+    .logo-icon {
+      width: 32px; height: 32px;
+      position: relative;
+      flex-shrink: 0;
     }
 
-    .logo-name { color: var(--navy); font-size: 13px; font-weight: 500; }
+    /* 羽・弧のような形をCSSで再現 */
+    .logo-icon::before,
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      border: 3px solid var(--br);
+      border-radius: 50%;
+    }
+    .logo-icon::before {
+      width: 28px; height: 28px;
+      top: 2px; left: 2px;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      transform: rotate(-45deg);
+    }
+    .logo-icon::after {
+      width: 16px; height: 16px;
+      top: 8px; left: 8px;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      transform: rotate(-45deg);
+    }
+
+    .logo-name {
+      color: var(--br);
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ヘッダー右：電話番号＋ボタン */
+    .hdr-right { display: flex; align-items: center; gap: 16px; }
+
+    .hdr-tel { text-align: right; }
+    .hdr-tel span { display: block; color: var(--br); font-size: 16px; font-weight: 700; letter-spacing: 0.5px; line-height: 1.2; }
+    .hdr-tel small { color: var(--txt-m); font-size: 9px; }
 
     .hdr-btn {
-      background: var(--navy);
+      background: var(--btn);
       color: var(--white);
       font-size: 10.5px;
       font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 3px;
+      padding: 8px 14px;
+      border-radius: 2px;
       display: flex; align-items: center; gap: 5px;
+      white-space: nowrap;
     }
 
     /* ══════════════════════════════
-       HERO  (高さ ~230px)
+       HERO  (~210px)
+       白背景＋写真右配置＋テキスト左
     ══════════════════════════════ */
     .hero {
-      background: var(--navy);
+      background: var(--white);
       display: grid;
-      grid-template-columns: 52% 48%;
-      height: 205px;
-      position: relative;
-      overflow: visible;
-    }
-
-    .hero-txt {
-      padding: 26px 28px 52px 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      z-index: 2;
-    }
-
-    .hero-txt h1 {
-      color: var(--white);
-      font-size: 26px;
-      font-weight: 900;
-      line-height: 1.25;
-      letter-spacing: -0.3px;
-      margin-bottom: 8px;
-    }
-
-    .hero-txt h1 .ac { color: var(--gold-lt); }
-
-    .hero-txt p {
-      color: rgba(255,255,255,0.75);
-      font-size: 11.5px;
-      line-height: 1.7;
-    }
-
-    /* 写真エリア
-       ★ 差し替え: <div class="hero-img-ph"> を
-         <img class="hero-img" src="photo.jpg" alt=""> に置換 */
-    .hero-img-wrap {
+      grid-template-columns: 48% 52%;
+      height: 210px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-img-wrap::before {
+    /* 左：テキスト */
+    .hero-txt {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 24px 28px 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-txt h1 {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--txt);
+      line-height: 1.5;
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-txt h1 .ac { color: var(--br); }
+
+    .hero-txt p {
+      color: var(--txt-m);
+      font-size: 11px;
+      line-height: 1.75;
+    }
+
+    /* 右：写真エリア
+       ★ 差し替え: .hero-img-ph の div を
+         <img class="hero-img" src="photo.jpg" alt=""> に置換 */
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 斜め区切り線（参考サイトの対角要素を再現） */
+    .hero-photo::before {
       content: '';
       position: absolute;
-      inset: 0; right: auto;
-      width: 100px;
-      background: linear-gradient(to right, var(--navy), transparent);
+      left: -40px; top: 0; bottom: 0;
+      width: 80px;
+      background: var(--white);
+      transform: skewX(-6deg);
+      transform-origin: top left;
       z-index: 1;
     }
 
-    .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+    .hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      display: block;
+    }
 
     .hero-img-ph {
       width: 100%; height: 100%;
-      background: linear-gradient(135deg, #243e80 0%, #3a5a96 60%, #2a4878 100%);
+      background: linear-gradient(135deg, #f0ebe3 0%, #e4ddd4 40%, #d8d0c4 100%);
       display: flex; align-items: center; justify-content: center;
     }
-    .hero-img-ph span { color: rgba(255,255,255,0.2); font-size: 10px; text-align: center; line-height: 1.8; }
-
-    /* 円形バッジ */
-    .badges {
-      position: absolute;
-      bottom: 0; left: 0;
-      padding: 0 32px;
-      display: flex; gap: 14px;
-      transform: translateY(50%);
-      z-index: 10;
-    }
-
-    .badge {
-      background: rgba(255,255,255,0.97);
-      border-radius: 50%;
-      width: 100px; height: 100px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 8px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.16);
-    }
-
-    .badge-ico { font-size: 20px; margin-bottom: 4px; line-height: 1; }
-    .badge-ttl { color: var(--navy); font-size: 8.5px; font-weight: 700; line-height: 1.3; margin-bottom: 2px; }
-    .badge-sub { color: var(--txt-m); font-size: 7.5px; line-height: 1.3; }
+    .hero-img-ph span { color: rgba(100,80,60,0.25); font-size: 10px; text-align: center; }
 
     /* ══════════════════════════════
        共通セクションヘッダー
     ══════════════════════════════ */
-    .sh { text-align: center; margin-bottom: 12px; }
-    .sh-lbl { display: block; color: var(--gold); font-size: 8.5px; font-weight: 700; letter-spacing: 3px; margin-bottom: 4px; }
-    .sh-ttl {
-      color: var(--navy); font-size: 18px; font-weight: 900;
+    .sh { text-align: center; margin-bottom: 14px; }
+    .sh-en { display: block; color: var(--br-lt); font-size: 8.5px; font-weight: 700; letter-spacing: 3px; margin-bottom: 3px; }
+    .sh-ja {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      color: var(--txt);
+      font-size: 17px;
+      font-weight: 700;
       display: inline-block;
     }
-    .sh-ttl::after {
-      content: ''; display: block;
-      width: 28px; height: 2.5px;
-      background: var(--gold);
-      margin: 5px auto 0; border-radius: 2px;
+    .sh-ja::after {
+      content: '';
+      display: block;
+      width: 30px; height: 2px;
+      background: var(--br);
+      margin: 5px auto 0;
+      border-radius: 1px;
     }
 
     /* ══════════════════════════════
-       ABOUT  (高さ ~90px)
+       ABOUT  (~105px)
     ══════════════════════════════ */
     .about {
-      background: var(--white);
+      background: var(--off);
       text-align: center;
-      padding: 58px 48px 16px;   /* 上: バッジtranslateY(50%)=50px分 */
+      padding: 20px 52px 18px;
+      border-top: 3px solid var(--br);
     }
 
     .about p {
       color: var(--txt-m);
       font-size: 11px;
-      line-height: 1.8;
+      line-height: 1.9;
       margin-top: 8px;
     }
 
     /* ══════════════════════════════
-       SERVICES  (高さ ~210px)
+       SERVICES  (~220px)
     ══════════════════════════════ */
-    .services { background: var(--off); padding: 14px 28px; }
+    .services { background: var(--white); padding: 16px 24px 14px; }
 
     .svc-grid {
       display: grid;
@@ -215,100 +238,97 @@
     }
 
     .svc-card {
-      background: var(--white);
+      background: var(--off);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--navy);
-      border-radius: 4px;
+      border-top: 3px solid var(--br);
+      border-radius: 3px;
       padding: 12px 10px;
     }
+    .svc-card.sub { border-top-color: var(--br-lt); }
 
-    .svc-card.gld { border-top-color: var(--gold); }
-
-    .svc-ico { font-size: 22px; display: block; margin-bottom: 8px; }
+    .svc-ico { font-size: 20px; display: block; margin-bottom: 7px; }
 
     .svc-card h3 {
-      color: var(--navy);
-      font-size: 11.5px;
+      color: var(--br-dk);
+      font-size: 11px;
       font-weight: 700;
-      margin-bottom: 7px;
-      padding-bottom: 7px;
+      margin-bottom: 6px;
+      padding-bottom: 6px;
       border-bottom: 1px solid var(--border);
     }
 
-    .svc-card p { color: var(--txt-m); font-size: 10px; line-height: 1.7; }
-    .svc-card p strong { color: var(--navy); font-weight: 700; }
+    .svc-card p { color: var(--txt-m); font-size: 9.5px; line-height: 1.7; }
+    .svc-card p strong { color: var(--br-dk); font-weight: 700; }
 
     /* ══════════════════════════════
-       PRICING  (高さ ~160px)
+       PRICING  (~150px)
     ══════════════════════════════ */
-    .pricing { background: var(--white); padding: 14px 48px; }
+    .pricing { background: var(--off); padding: 14px 40px; }
 
     .price-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      max-width: 600px;
+      gap: 14px;
+      max-width: 580px;
       margin: 0 auto;
     }
 
-    .price-card { border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+    .price-card { border-radius: 3px; overflow: hidden; border: 1px solid var(--border); }
 
-    .price-hd { padding: 10px 18px; text-align: center; font-size: 11px; font-weight: 700; color: var(--white); }
-    .price-hd.nv { background: var(--navy); }
-    .price-hd.gd { background: var(--gold); }
+    .price-hd { padding: 9px 16px; text-align: center; font-size: 11px; font-weight: 700; color: var(--white); }
+    .price-hd.main { background: var(--br-dk); }
+    .price-hd.sub  { background: var(--br); }
 
-    .price-body { background: var(--white); padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+    .price-body { background: var(--white); padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
 
-    .price-ico { font-size: 30px; line-height: 1; flex-shrink: 0; }
+    .price-ico { font-size: 28px; line-height: 1; flex-shrink: 0; }
 
-    .price-amt { font-size: 30px; font-weight: 900; color: var(--navy); line-height: 1; }
-    .price-amt.gd { color: var(--gold); }
-    .price-amt sup { font-size: 11px; font-weight: 600; vertical-align: super; }
-    .price-amt small { font-size: 11px; font-weight: 500; }
+    .price-amt { font-size: 28px; font-weight: 900; color: var(--br-dk); line-height: 1; }
+    .price-amt.lt { color: var(--br); }
+    .price-amt sup { font-size: 10px; font-weight: 600; vertical-align: super; }
+    .price-amt small { font-size: 10px; font-weight: 500; }
 
-    .price-note { color: var(--txt-m); font-size: 9.5px; line-height: 1.6; margin-top: 4px; }
-
-    .price-rem { text-align: center; margin-top: 8px; color: var(--txt-l); font-size: 9.5px; }
+    .price-note { color: var(--txt-m); font-size: 9px; line-height: 1.65; margin-top: 4px; }
+    .price-rem { text-align: center; margin-top: 8px; color: var(--txt-l); font-size: 9px; }
 
     /* ══════════════════════════════
-       FOOTER  (高さ ~150px)
+       FOOTER  (~165px)
     ══════════════════════════════ */
     footer {
-      background: var(--navy-dk);
+      background: var(--br-dk);
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
 
-    .fl { padding: 18px 28px; border-right: 1px solid rgba(255,255,255,0.1); }
-
-    .fl h2 { color: var(--white); font-size: 14px; font-weight: 700; line-height: 1.5; margin-bottom: 6px; }
-    .fl p  { color: rgba(255,255,255,0.58); font-size: 10px; line-height: 1.75; margin-bottom: 12px; }
+    .fl { padding: 20px 28px; border-right: 1px solid rgba(255,255,255,0.12); }
+    .fl h2 { color: var(--white); font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 700; line-height: 1.5; margin-bottom: 6px; }
+    .fl p  { color: rgba(255,255,255,0.58); font-size: 9.5px; line-height: 1.85; margin-bottom: 12px; }
 
     .fl-btn {
       display: flex; align-items: center; justify-content: center; gap: 6px;
-      border: 1.5px solid rgba(255,255,255,0.6);
-      color: var(--white); font-size: 11px; font-weight: 700;
-      padding: 8px 0; border-radius: 3px;
-      width: 100%; max-width: 220px;
+      border: 1.5px solid rgba(255,255,255,0.55);
+      color: var(--white); font-size: 10.5px; font-weight: 700;
+      padding: 8px 0; border-radius: 2px;
+      width: 100%; max-width: 210px;
     }
 
-    .fr { padding: 18px 28px; }
-    .fr-lbl  { color: rgba(255,255,255,0.35); font-size: 8.5px; letter-spacing: 2px; margin-bottom: 4px; }
-    .fr-name { color: var(--white); font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+    .fr { padding: 20px 28px; }
+    .fr-lbl  { color: rgba(255,255,255,0.35); font-size: 8px; letter-spacing: 2px; margin-bottom: 4px; }
+    .fr-name { color: var(--white); font-size: 14px; font-weight: 700; margin-bottom: 10px; }
 
-    .fr-info { color: rgba(255,255,255,0.75); font-size: 11.5px; line-height: 1.9; }
+    .fr-info { color: rgba(255,255,255,0.75); font-size: 11px; line-height: 1.9; }
     .fr-info strong { color: var(--white); font-weight: 600; }
-    .fr-info a { color: var(--gold-lt); text-decoration: none; }
+    .fr-info a { color: var(--br-lt); text-decoration: none; }
 
     /* ══════════════════════════════
-       BOTTOM BAR  (~30px)
+       BOTTOM BAR  (~28px)
     ══════════════════════════════ */
     .btm {
-      background: #09182E;
-      padding: 8px 32px;
+      background: #3A2810;
+      padding: 7px 28px;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .btm p { color: rgba(255,255,255,0.28); font-size: 9px; }
+    .btm p { color: rgba(255,255,255,0.28); font-size: 8.5px; }
   </style>
 </head>
 <body>
@@ -316,41 +336,35 @@
 <!-- HEADER -->
 <header>
   <div class="logo">
-    <span class="logo-mark">Lp</span>
-    <span class="logo-name">Lucent Partners</span>
+    <div class="logo-icon"></div>
+    <div class="logo-name">Lucent Partners</div>
   </div>
-  <div class="hdr-btn">✉ お問い合わせ</div>
+  <div class="hdr-right">
+    <div class="hdr-tel">
+      <span>☎ 070-7564-5366</span>
+      <small>受付時間／平日 9:00〜18:00</small>
+    </div>
+    <div class="hdr-btn">✉ お問い合わせ</div>
+  </div>
 </header>
 
 <!-- HERO -->
 <div class="hero">
+  <!-- 左：テキスト -->
   <div class="hero-txt">
-    <h1>企業の未来を創る<br><span class="ac">採用パートナー</span></h1>
-    <p>貴社の採用課題に寄り添い、<br>最適な人材との出会いをつくります。</p>
+    <h1>
+      採用活動のお悩みは<br>
+      <span class="ac">ルーセント・パートナーズ</span>に<br>
+      お任せください！
+    </h1>
+    <p>建設業・運送業を中心とした中小企業様の<br>採用課題に寄り添い、成功まで伴走します。</p>
   </div>
 
-  <div class="hero-img-wrap">
-    <!--★ 写真差し替え: 下の div を <img class="hero-img" src="photo.jpg" alt=""> に置換 -->
+  <!-- 右：写真
+       ★ 差し替え: 下の div を <img class="hero-img" src="photo.jpg" alt=""> に置換 -->
+  <div class="hero-photo">
     <div class="hero-img-ph">
       <span>photo.jpg をここに配置</span>
-    </div>
-  </div>
-
-  <div class="badges">
-    <div class="badge">
-      <span class="badge-ico">📋</span>
-      <span class="badge-ttl">採用戦略の設計</span>
-      <span class="badge-sub">課題に合わせた<br>最適な戦略を立案</span>
-    </div>
-    <div class="badge">
-      <span class="badge-ico">🔄</span>
-      <span class="badge-ttl">母集団形成支援</span>
-      <span class="badge-sub">多様なチャネルで<br>応募数を最大化</span>
-    </div>
-    <div class="badge">
-      <span class="badge-ico">🤝</span>
-      <span class="badge-ttl">選考・面接サポート</span>
-      <span class="badge-sub">見極め精度を高め<br>採用成功へ</span>
     </div>
   </div>
 </div>
@@ -358,8 +372,8 @@
 <!-- ABOUT -->
 <section class="about">
   <div class="sh">
-    <span class="sh-lbl">ABOUT US</span>
-    <h2 class="sh-ttl">私たちについて</h2>
+    <span class="sh-en">ABOUT US</span>
+    <h2 class="sh-ja">私たちについて</h2>
   </div>
   <p>
     ルーセント・パートナーズは、企業の成長を"人"の力で支える採用支援会社です。<br>
@@ -371,8 +385,8 @@
 <!-- SERVICES -->
 <section class="services">
   <div class="sh">
-    <span class="sh-lbl">SERVICES</span>
-    <h2 class="sh-ttl">サービス内容</h2>
+    <span class="sh-en">SERVICES</span>
+    <h2 class="sh-ja">サービス内容</h2>
   </div>
   <div class="svc-grid">
     <div class="svc-card">
@@ -385,12 +399,12 @@
       <h3>母集団形成支援</h3>
       <p>求人媒体の運用、スカウト、SNS活用などで、質・量ともに最適な母集団を形成します。</p>
     </div>
-    <div class="svc-card gld">
+    <div class="svc-card sub">
       <span class="svc-ico">🤝</span>
       <h3>選考・面接支援</h3>
       <p>書類選考や面接の代行・同席、評価基準の設計で<strong>採用の精度</strong>を高めます。</p>
     </div>
-    <div class="svc-card gld">
+    <div class="svc-card sub">
       <span class="svc-ico">🌱</span>
       <h3>内定後フォロー</h3>
       <p>内定者の不安解消や入社後フォロー体制構築で、<strong>入社・定着</strong>を支援します。</p>
@@ -401,12 +415,12 @@
 <!-- PRICING -->
 <section class="pricing">
   <div class="sh">
-    <span class="sh-lbl">PRICING</span>
-    <h2 class="sh-ttl">料金体系</h2>
+    <span class="sh-en">PRICING</span>
+    <h2 class="sh-ja">料金体系</h2>
   </div>
   <div class="price-row">
     <div class="price-card">
-      <div class="price-hd nv">採用代行費（RPO）</div>
+      <div class="price-hd main">採用代行費（RPO）</div>
       <div class="price-body">
         <div class="price-ico">📅</div>
         <div>
@@ -416,11 +430,11 @@
       </div>
     </div>
     <div class="price-card">
-      <div class="price-hd gd">採用成功報酬</div>
+      <div class="price-hd sub">採用成功報酬</div>
       <div class="price-body">
         <div class="price-ico">🎯</div>
         <div>
-          <div class="price-amt gd"><sup>¥</sup>15<small>万円</small></div>
+          <div class="price-amt lt"><sup>¥</sup>15<small>万円</small></div>
           <p class="price-note">採用決定時にのみ発生する<br>成果報酬です。（税抜）</p>
         </div>
       </div>
