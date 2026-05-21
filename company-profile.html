@@ -4,43 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ルーセント・パートナーズ株式会社 - 会社案内</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    /* ===== Reset & Base ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ===== Reset ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --navy:       #1B3A6B;
-      --navy-dark:  #122a52;
-      --gold:       #B8972A;
-      --gold-light: #d0a83a;
-      --white:      #ffffff;
-      --off-white:  #f6f7f9;
-      --gray:       #e8eaee;
-      --text:       #1a1a2e;
-      --text-mid:   #4a5068;
-      --text-light: #8a8faa;
+      --navy:      #1B3A6B;
+      --navy-dark: #122a52;
+      --gold:      #B8972A;
+      --gold-lt:   #cfa83a;
+      --white:     #ffffff;
+      --off:       #f6f8fb;
+      --border:    #e4e7ee;
+      --txt:       #1a1e30;
+      --txt-mid:   #4a5270;
+      --txt-lt:    #8890aa;
     }
 
     body {
-      font-family: 'Yu Gothic', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
-      color: var(--text);
+      font-family: 'Noto Sans JP', 'Yu Gothic', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif;
+      color: var(--txt);
       background: var(--white);
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.75;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
     @media print {
       @page { size: A4; margin: 0; }
-      body { margin: 0; }
     }
 
-    /* ===== HEADER ===== */
+    /* ─────────────────────────────────────
+       HEADER
+    ───────────────────────────────────── */
     header {
       background: var(--white);
-      border-bottom: 1px solid var(--gray);
-      padding: 16px 48px;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -52,50 +55,51 @@
       gap: 10px;
     }
 
+    /* 参考サイトに近い "Ip" 斜体ロゴ */
     .logo-mark {
-      font-size: 24px;
-      font-weight: 900;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 26px;
+      font-weight: 700;
       color: var(--navy);
       font-style: italic;
-      letter-spacing: -1px;
+      letter-spacing: -2px;
       line-height: 1;
-      border: 2px solid var(--navy);
-      padding: 3px 9px;
-      border-radius: 2px;
     }
 
-    .logo-text {
+    .logo-name {
       color: var(--navy);
       font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
     }
 
-    .contact-btn {
+    .header-btn {
       background: var(--navy);
       color: var(--white);
       font-size: 12px;
       font-weight: 700;
-      padding: 9px 22px;
+      padding: 9px 20px;
       border-radius: 3px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    /* ===== HERO ===== */
+    /* ─────────────────────────────────────
+       HERO
+    ───────────────────────────────────── */
     .hero {
       background: var(--navy);
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 380px;
+      grid-template-columns: 50% 50%;
       position: relative;
-      overflow: hidden;
+      min-height: 400px;
+      overflow: visible;
     }
 
-    .hero-left {
-      padding: 64px 48px 80px;
+    .hero-text {
+      padding: 72px 52px 100px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -103,145 +107,151 @@
       z-index: 2;
     }
 
-    .hero-left h1 {
+    .hero-text h1 {
       color: var(--white);
-      font-size: 38px;
+      font-size: 42px;
       font-weight: 900;
-      line-height: 1.25;
+      line-height: 1.22;
       letter-spacing: -0.5px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .hero-left h1 em {
-      color: var(--gold-light);
-      font-style: normal;
+    .hero-text h1 .accent {
+      color: var(--gold-lt);
     }
 
-    .hero-left p {
-      color: rgba(255,255,255,0.78);
+    .hero-text p {
+      color: rgba(255,255,255,0.75);
       font-size: 13.5px;
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
-    .hero-right {
+    /* 写真エリア
+       ★ 写真差し替え方法：
+         <div class="hero-img"> を
+         <img class="hero-img-tag" src="your-photo.jpg" alt=""> に置き換える
+    */
+    .hero-img-wrap {
       position: relative;
       overflow: hidden;
     }
 
-    /* ===== 写真エリア =====
-       下記 <img> タグの src を差し替えてください。
-       例: src="hero-photo.jpg" または外部URL
-    ===== */
-    .hero-photo {
+    .hero-img-wrap::before {
+      /* 写真左端→ネイビーへのフェード */
+      content: '';
+      position: absolute;
+      inset: 0;
+      left: 0;
+      width: 160px;
+      background: linear-gradient(to right, var(--navy) 0%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-img-tag {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 20%;
       display: block;
     }
 
-    .hero-photo-placeholder {
+    /* プレースホルダー（写真差し替えまでの代替） */
+    .hero-img-placeholder {
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #2a4a80 0%, #3a5a90 40%, #1e3566 100%);
+      min-height: 400px;
+      background:
+        linear-gradient(135deg,
+          rgba(27,58,107,0.95) 0%,
+          rgba(40,72,130,0.6) 40%,
+          rgba(55,90,150,0.3) 100%),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.02) 0px,
+          rgba(255,255,255,0.02) 1px,
+          transparent 1px,
+          transparent 20px
+        );
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .hero-photo-placeholder span {
-      color: rgba(255,255,255,0.3);
-      font-size: 13px;
+    .hero-img-placeholder span {
+      color: rgba(255,255,255,0.2);
+      font-size: 12px;
       text-align: center;
-      line-height: 1.6;
+      line-height: 1.8;
     }
 
-    /* グラデーションオーバーレイ（写真の左端をなめらかに） */
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 120px;
-      background: linear-gradient(to right, var(--navy), transparent);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* ===== 円形バッジ（ヒーロー下部） ===== */
-    .hero-badges {
+    /* ─── 円形バッジ ─── */
+    .badges {
       position: absolute;
       bottom: 0;
       left: 0;
-      right: 0;
+      padding: 0 52px;
       display: flex;
-      justify-content: flex-start;
-      gap: 16px;
-      padding: 0 48px 0;
-      z-index: 3;
+      gap: 18px;
+      transform: translateY(50%);
+      z-index: 10;
     }
 
-    .badge-circle {
-      background: rgba(255,255,255,0.95);
+    .badge {
+      background: rgba(255,255,255,0.97);
       border-radius: 50%;
-      width: 120px;
-      height: 120px;
+      width: 122px;
+      height: 122px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      transform: translateY(50%);
+      padding: 10px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
     }
 
-    .badge-circle .badge-icon {
-      font-size: 26px;
-      margin-bottom: 6px;
-      line-height: 1;
-    }
+    .badge-ico { font-size: 24px; margin-bottom: 5px; line-height: 1; }
 
-    .badge-circle .badge-title {
+    .badge-ttl {
       color: var(--navy);
       font-size: 10px;
       font-weight: 700;
       line-height: 1.3;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
-    .badge-circle .badge-sub {
-      color: var(--text-mid);
+    .badge-sub {
+      color: var(--txt-mid);
       font-size: 9px;
       line-height: 1.3;
     }
 
-    /* ===== ABOUT ===== */
-    .about {
-      background: var(--white);
+    /* ─────────────────────────────────────
+       共通セクションヘッダー
+    ───────────────────────────────────── */
+    .sec-hd {
       text-align: center;
-      padding: 100px 80px 64px;
+      margin-bottom: 44px;
     }
 
-    .sec-label {
+    .sec-lbl {
       display: block;
       color: var(--gold);
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    .sec-title {
+    .sec-ttl {
       color: var(--navy);
       font-size: 24px;
       font-weight: 900;
-      position: relative;
       display: inline-block;
-      margin-bottom: 6px;
     }
 
-    .sec-title::after {
+    .sec-ttl::after {
       content: '';
       display: block;
       width: 36px;
@@ -251,25 +261,32 @@
       border-radius: 2px;
     }
 
-    .about-text {
-      color: var(--text-mid);
+    /* ─────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────── */
+    .about {
+      background: var(--white);
+      text-align: center;
+      /* バッジの translateY(50%) 分だけ上部余白を確保 */
+      padding: 104px 80px 64px;
+    }
+
+    .about-body {
+      color: var(--txt-mid);
       font-size: 13.5px;
       line-height: 2;
       margin-top: 18px;
     }
 
-    /* ===== SERVICES ===== */
+    /* ─────────────────────────────────────
+       SERVICES
+    ───────────────────────────────────── */
     .services {
-      background: var(--off-white);
-      padding: 64px 48px;
+      background: var(--off);
+      padding: 68px 52px;
     }
 
-    .services .sec-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .service-row {
+    .svc-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
@@ -277,20 +294,18 @@
 
     .svc-card {
       background: var(--white);
-      border: 1px solid var(--gray);
+      border: 1px solid var(--border);
       border-top: 3px solid var(--navy);
       border-radius: 4px;
-      padding: 24px 20px;
+      padding: 26px 20px 24px;
     }
 
-    .svc-card.gold-accent {
-      border-top-color: var(--gold);
-    }
+    .svc-card.gold { border-top-color: var(--gold); }
 
-    .svc-icon {
-      font-size: 30px;
-      margin-bottom: 12px;
+    .svc-ico {
+      font-size: 32px;
       display: block;
+      margin-bottom: 12px;
     }
 
     .svc-card h3 {
@@ -299,488 +314,382 @@
       font-weight: 700;
       margin-bottom: 10px;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--gray);
+      border-bottom: 1px solid var(--border);
     }
 
-    .svc-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .svc-card ul li {
-      color: var(--text-mid);
-      font-size: 11.5px;
-      padding: 3px 0 3px 14px;
-      position: relative;
-      line-height: 1.5;
-    }
-
-    .svc-card ul li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-size: 10px;
-      top: 4px;
-    }
-
-    /* SNS + コンサル の2列は中央寄せ */
-    .service-row-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 18px;
-      max-width: 660px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ===== FEATURES ===== */
-    .features {
-      background: var(--white);
-      padding: 64px 48px;
-    }
-
-    .features .sec-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .feature-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .feat-card {
-      border: 1px solid var(--gray);
-      border-radius: 6px;
-      padding: 32px 24px 24px;
-      text-align: center;
-      position: relative;
-    }
-
-    .feat-num {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--navy);
-      color: var(--white);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      font-size: 13px;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .feat-icon {
-      font-size: 32px;
-      display: block;
-      margin-bottom: 12px;
-    }
-
-    .feat-card h3 {
-      color: var(--navy);
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .feat-card p {
-      color: var(--text-mid);
+    /* 箇条書きをやめて短文段落スタイルへ（参考画像準拠） */
+    .svc-card p {
+      color: var(--txt-mid);
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    /* ===== PRICING ===== */
+    .svc-card p strong {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    /* ─────────────────────────────────────
+       PRICING
+    ───────────────────────────────────── */
     .pricing {
-      background: var(--off-white);
-      padding: 64px 48px;
+      background: var(--white);
+      padding: 68px 52px;
     }
 
-    .pricing .sec-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .pricing-row {
+    .price-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      max-width: 760px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
     .price-card {
-      border-radius: 6px;
+      border-radius: 5px;
       overflow: hidden;
-      border: 1px solid var(--gray);
+      border: 1px solid var(--border);
     }
 
     .price-head {
-      padding: 14px 24px;
+      padding: 13px 24px;
       text-align: center;
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.5px;
       color: var(--white);
+      letter-spacing: 0.3px;
     }
-
     .price-head.navy { background: var(--navy); }
     .price-head.gold { background: var(--gold); }
 
     .price-body {
       background: var(--white);
-      padding: 28px 24px;
+      padding: 28px 28px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
 
-    .price-icon {
-      font-size: 36px;
-      color: var(--navy);
+    .price-ico {
+      font-size: 40px;
+      line-height: 1;
       flex-shrink: 0;
     }
 
-    .price-icon.gold-icon { color: var(--gold); }
-
-    .price-num {
-      font-size: 36px;
+    .price-amt {
+      font-size: 42px;
       font-weight: 900;
       color: var(--navy);
       line-height: 1;
     }
+    .price-amt.gold { color: var(--gold); }
 
-    .price-num.gold-num { color: var(--gold); }
-
-    .price-num sup {
-      font-size: 14px;
-      font-weight: 600;
-      vertical-align: super;
-    }
-
-    .price-num small {
-      font-size: 13px;
-      font-weight: 500;
-    }
+    .price-amt sup { font-size: 15px; font-weight: 600; vertical-align: super; }
+    .price-amt small { font-size: 14px; font-weight: 500; }
 
     .price-note {
-      color: var(--text-mid);
+      color: var(--txt-mid);
       font-size: 11.5px;
-      line-height: 1.6;
+      line-height: 1.65;
       margin-top: 6px;
     }
 
-    .pricing-remark {
+    .price-remark {
       text-align: center;
       margin-top: 16px;
-      color: var(--text-light);
+      color: var(--txt-lt);
       font-size: 11.5px;
     }
 
-    /* ===== FOOTER ===== */
+    /* ─────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────── */
     footer {
       background: var(--navy-dark);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
     }
 
-    .footer-left {
-      padding: 44px 48px;
+    .foot-left {
+      padding: 48px 52px;
       border-right: 1px solid rgba(255,255,255,0.1);
     }
 
-    .footer-left h2 {
+    .foot-left h2 {
       color: var(--white);
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 700;
       line-height: 1.5;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .footer-left p {
-      color: rgba(255,255,255,0.62);
+    .foot-left p {
+      color: rgba(255,255,255,0.6);
       font-size: 12px;
-      line-height: 1.8;
-      margin-bottom: 22px;
+      line-height: 1.9;
+      margin-bottom: 24px;
     }
 
-    .footer-cta {
-      display: inline-flex;
+    .foot-btn {
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      border: 2px solid rgba(255,255,255,0.7);
+      border: 2px solid rgba(255,255,255,0.65);
       color: var(--white);
       font-size: 13px;
       font-weight: 700;
-      padding: 11px 26px;
+      padding: 13px 0;
       border-radius: 3px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
+      width: 100%;
+      max-width: 280px;
     }
 
-    .footer-right {
-      padding: 44px 48px;
+    .foot-right {
+      padding: 48px 52px;
     }
 
-    .footer-company-label {
-      color: rgba(255,255,255,0.4);
+    .foot-co-lbl {
+      color: rgba(255,255,255,0.38);
       font-size: 10px;
       letter-spacing: 2px;
       margin-bottom: 6px;
     }
 
-    .footer-company-name {
+    .foot-co-name {
       color: var(--white);
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .contact-info {
-      color: rgba(255,255,255,0.78);
-      font-size: 13px;
+    .foot-info {
+      color: rgba(255,255,255,0.75);
+      font-size: 13.5px;
       line-height: 2;
     }
 
-    .contact-info strong {
-      color: var(--white);
-      font-weight: 600;
-    }
+    .foot-info strong { color: var(--white); font-weight: 600; }
+    .foot-info a { color: var(--gold-lt); text-decoration: none; }
 
-    .contact-info a {
-      color: var(--gold-light);
-      text-decoration: none;
-    }
-
-    /* ===== BOTTOM BAR ===== */
-    .bottom-bar {
-      background: #0c1e3d;
-      padding: 10px 48px;
+    /* ─────────────────────────────────────
+       BOTTOM BAR
+    ───────────────────────────────────── */
+    .btm {
+      background: #0b1d3b;
+      padding: 11px 52px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .bottom-bar p {
-      color: rgba(255,255,255,0.35);
-      font-size: 10.5px;
-    }
+    .btm p { color: rgba(255,255,255,0.3); font-size: 10.5px; }
   </style>
 </head>
 <body>
 
-<!-- ========== HEADER ========== -->
+<!-- ═══════════════════════════════════
+     HEADER
+═══════════════════════════════════ -->
 <header>
   <div class="logo">
-    <div class="logo-mark">Lp</div>
-    <div class="logo-text">Lucent Partners</div>
+    <span class="logo-mark">Lp</span>
+    <span class="logo-name">Lucent Partners</span>
   </div>
-  <div class="contact-btn">✉ お問い合わせ</div>
+  <div class="header-btn">✉ お問い合わせ</div>
 </header>
 
-<!-- ========== HERO ========== -->
+
+<!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
 <div class="hero">
+
   <!-- 左：テキスト -->
-  <div class="hero-left">
-    <h1>採用の課題を、<br><em>共に解決</em>する。</h1>
+  <div class="hero-text">
+    <h1>企業の未来を創る<br><span class="accent">採用パートナー</span></h1>
     <p>
-      建設業・運送業を中心とした中小企業様の採用課題に寄り添い、<br>
+      貴社の採用課題に寄り添い、<br>
       最適な人材との出会いをつくります。
     </p>
   </div>
 
-  <!-- 右：写真エリア -->
-  <!-- ★ 写真を差し替える場合は下の <div class="hero-photo-placeholder"> を
-       <img class="hero-photo" src="あなたの写真.jpg" alt=""> に置き換えてください -->
-  <div class="hero-right">
-    <div class="hero-photo-placeholder">
-      <span>写真をここに配置<br>（hero-photo.jpg に差し替え）</span>
+  <!-- 右：写真
+    ★ 差し替え方法：
+    下の <div class="hero-img-placeholder"> ブロックを削除して
+    <img class="hero-img-tag" src="あなたの写真.jpg" alt=""> を入れてください
+  -->
+  <div class="hero-img-wrap">
+    <div class="hero-img-placeholder">
+      <span>hero-photo.jpg をここに配置</span>
     </div>
   </div>
 
-  <!-- バッジ（ヒーロー下部・円形） -->
-  <div class="hero-badges">
-    <div class="badge-circle">
-      <span class="badge-icon">📋</span>
-      <span class="badge-title">採用戦略の設計</span>
+  <!-- 円形バッジ（ヒーロー下部） -->
+  <div class="badges">
+    <div class="badge">
+      <span class="badge-ico">📋</span>
+      <span class="badge-ttl">採用戦略の設計</span>
       <span class="badge-sub">課題に合わせた<br>最適な戦略を立案</span>
     </div>
-    <div class="badge-circle">
-      <span class="badge-icon">🔄</span>
-      <span class="badge-title">採用代行（RPO）</span>
+    <div class="badge">
+      <span class="badge-ico">🔄</span>
+      <span class="badge-ttl">母集団形成支援</span>
       <span class="badge-sub">多様なチャネルで<br>応募数を最大化</span>
     </div>
-    <div class="badge-circle">
-      <span class="badge-icon">🤝</span>
-      <span class="badge-title">選考・定着支援</span>
+    <div class="badge">
+      <span class="badge-ico">🤝</span>
+      <span class="badge-ttl">選考・面接サポート</span>
       <span class="badge-sub">見極め精度を高め<br>採用成功へ</span>
     </div>
   </div>
+
 </div>
 
-<!-- ========== ABOUT ========== -->
+
+<!-- ═══════════════════════════════════
+     ABOUT
+═══════════════════════════════════ -->
 <section class="about">
-  <span class="sec-label">ABOUT US</span>
-  <h2 class="sec-title">私たちについて</h2>
-  <p class="about-text">
-    ルーセント・パートナーズは、建設業・運送業を中心とした中小企業様の採用を支援する会社です。<br>
-    「求人を出して終わり」ではなく、採用成功まで継続的に伴走する姿勢で、<br>
-    求人媒体の提案から採用代行、定着・労務支援まで一貫してサポートします。
+  <div class="sec-hd">
+    <span class="sec-lbl">ABOUT US</span>
+    <h2 class="sec-ttl">私たちについて</h2>
+  </div>
+  <p class="about-body">
+    ルーセント・パートナーズは、建設業・運送業を中心とした中小企業様の採用支援会社です。<br>
+    採用戦略の設計から、母集団形成、採用代行、内定後フォローまで、<br>
+    一気通貫でサポートし、採用の成功にコミットします。
   </p>
 </section>
 
-<!-- ========== SERVICES ========== -->
+
+<!-- ═══════════════════════════════════
+     SERVICES
+═══════════════════════════════════ -->
 <section class="services">
-  <div class="sec-header">
-    <span class="sec-label">SERVICES</span>
-    <h2 class="sec-title">サービス内容</h2>
+  <div class="sec-hd">
+    <span class="sec-lbl">SERVICES</span>
+    <h2 class="sec-ttl">サービス内容</h2>
   </div>
 
-  <div class="service-row">
-    <!-- 1 -->
+  <div class="svc-grid">
+
     <div class="svc-card">
-      <span class="svc-icon">📣</span>
-      <h3>求人媒体提案・運用</h3>
-      <ul>
-        <li>企業様に合わせた媒体選定</li>
-        <li>求人原稿の作成・改善</li>
-        <li>タイトル改善 / ABテスト</li>
-        <li>掲載効果の分析・最適化</li>
-      </ul>
+      <span class="svc-ico">📣</span>
+      <h3>採用戦略設計</h3>
+      <p>
+        採用課題の分析から、<br>
+        <strong>ターゲット設計・求人戦略</strong>の<br>
+        立案までをサポートします。
+      </p>
     </div>
 
-    <!-- 2 -->
     <div class="svc-card">
-      <span class="svc-icon">🔄</span>
-      <h3>採用代行（RPO）</h3>
-      <ul>
-        <li>応募者への一次対応</li>
-        <li>面接日程の調整・管理</li>
-        <li>スカウト送信・候補者発掘</li>
-        <li>採用進捗管理・レポーティング</li>
-      </ul>
+      <span class="svc-ico">🔄</span>
+      <h3>母集団形成支援</h3>
+      <p>
+        求人媒体の運用、スカウト、<br>
+        SNS活用などで、質・量ともに<br>
+        最適な母集団を形成します。
+      </p>
     </div>
 
-    <!-- 3 -->
-    <div class="svc-card gold-accent">
-      <span class="svc-icon">📱</span>
-      <h3>SNS採用支援</h3>
-      <ul>
-        <li>Instagram / TikTok 採用発信</li>
-        <li>採用ブランディング・広報設計</li>
-        <li>若手・Z世代向けSNS活用戦略</li>
-      </ul>
+    <div class="svc-card gold">
+      <span class="svc-ico">🤝</span>
+      <h3>選考・面接支援</h3>
+      <p>
+        書類選考や面接の代行・同席、<br>
+        評価基準の設計などで、<br>
+        採用の精度を高めます。
+      </p>
     </div>
 
-    <!-- 4 -->
-    <div class="svc-card gold-accent">
-      <span class="svc-icon">🛡️</span>
-      <h3>福利厚生・労務支援</h3>
-      <ul>
-        <li>福利厚生制度の提案・設計</li>
-        <li>就業規則の作成・見直し支援</li>
-        <li>社労士連携による体制構築</li>
-      </ul>
+    <div class="svc-card gold">
+      <span class="svc-ico">🌱</span>
+      <h3>定着・労務支援</h3>
+      <p>
+        内定者の不安解消や入社後の<br>
+        フォロー、福利厚生・就業規則<br>
+        整備まで一体支援します。
+      </p>
     </div>
+
   </div>
 </section>
 
-<!-- ========== FEATURES ========== -->
-<section class="features">
-  <div class="sec-header">
-    <span class="sec-label">FEATURES</span>
-    <h2 class="sec-title">当サービスの特徴</h2>
-  </div>
 
-  <div class="feature-row">
-    <div class="feat-card">
-      <div class="feat-num">1</div>
-      <span class="feat-icon">🏗️</span>
-      <h3>小規模企業様に特化</h3>
-      <p>建設業・運送業を中心とした5〜50名規模の企業様に特化。現場目線・経営者目線の両面から実践的な採用支援を行います。</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-num">2</div>
-      <span class="feat-icon">🤝</span>
-      <h3>伴走型支援</h3>
-      <p>「求人を出して終わり」ではなく、採用成功まで継続的に改善・運用。課題が変わっても最適な手を打ち続けます。</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-num">3</div>
-      <span class="feat-icon">🌱</span>
-      <h3>採用から定着・労務まで</h3>
-      <p>求人・採用だけでなく、福利厚生提案や就業規則作成など、安心して採用・定着できる体制作りまでサポートします。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ========== PRICING ========== -->
+<!-- ═══════════════════════════════════
+     PRICING
+═══════════════════════════════════ -->
 <section class="pricing">
-  <div class="sec-header">
-    <span class="sec-label">PRICING</span>
-    <h2 class="sec-title">料金体系</h2>
+  <div class="sec-hd">
+    <span class="sec-lbl">PRICING</span>
+    <h2 class="sec-ttl">料金体系</h2>
   </div>
 
-  <div class="pricing-row">
-    <!-- 採用代行費 -->
+  <div class="price-row">
+
     <div class="price-card">
       <div class="price-head navy">採用代行費（RPO）</div>
       <div class="price-body">
-        <div class="price-icon">📅</div>
+        <div class="price-ico">📅</div>
         <div>
-          <div class="price-num"><sup>¥</sup>3<small>万円〜/月</small></div>
+          <div class="price-amt"><sup>¥</sup>3<small>万円〜/月</small></div>
           <p class="price-note">採用業務を継続的にご支援する<br>月額制のプランです。（税抜）</p>
         </div>
       </div>
     </div>
 
-    <!-- 採用成功報酬 -->
     <div class="price-card">
       <div class="price-head gold">採用成功報酬</div>
       <div class="price-body">
-        <div class="price-icon gold-icon">🎯</div>
+        <div class="price-ico">🎯</div>
         <div>
-          <div class="price-num gold-num"><sup>¥</sup>15<small>万円</small></div>
+          <div class="price-amt gold"><sup>¥</sup>15<small>万円</small></div>
           <p class="price-note">採用決定時にのみ発生する<br>成果報酬です。（税抜）</p>
         </div>
       </div>
     </div>
+
   </div>
-  <p class="pricing-remark">※ 媒体によっては採用成功報酬型の適用ができない場合がございます。</p>
+  <p class="price-remark">※ 媒体によっては採用成功報酬型の適用ができない場合がございます。</p>
 </section>
 
-<!-- ========== FOOTER ========== -->
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
 <footer>
-  <div class="footer-left">
+
+  <div class="foot-left">
     <h2>まずはお気軽に<br>ご相談ください</h2>
     <p>
-      採用に関するご相談・情報交換だけでも歓迎しております。<br>
-      「まずは話を聞いてみたい」「今の採用方法で良いのか確認したい」<br>
-      など、どんな内容でもお気軽にご連絡ください。
+      貴社の採用課題をヒアリングし、<br>
+      最適なご提案をいたします。<br>
+      情報交換だけでも歓迎しております。
     </p>
-    <div class="footer-cta">✉ お問い合わせはこちら</div>
+    <div class="foot-btn">✉ お問い合わせはこちら</div>
   </div>
 
-  <div class="footer-right">
-    <p class="footer-company-label">LUCENT PARTNERS Co., Ltd.</p>
-    <p class="footer-company-name">ルーセント・パートナーズ株式会社</p>
-    <div class="contact-info">
+  <div class="foot-right">
+    <p class="foot-co-lbl">LUCENT PARTNERS Co., Ltd.</p>
+    <p class="foot-co-name">ルーセント・パートナーズ株式会社</p>
+    <div class="foot-info">
       <strong>久保山 蓮</strong><br>
       採用コンサルティング / 採用実務支援<br>
       TEL：<strong>070-7564-5366</strong><br>
       MAIL：<a href="mailto:r.kuboyama@lucent-p.jp">r.kuboyama@lucent-p.jp</a>
     </div>
   </div>
+
 </footer>
 
-<!-- ========== BOTTOM BAR ========== -->
-<div class="bottom-bar">
+
+<!-- ═══════════════════════════════════
+     BOTTOM BAR
+═══════════════════════════════════ -->
+<div class="btm">
   <p>© 2025 Lucent Partners Co., Ltd. All Rights Reserved.</p>
   <p>会社案内 / COMPANY PROFILE</p>
 </div>
